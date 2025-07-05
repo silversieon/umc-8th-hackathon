@@ -1,4 +1,4 @@
-package com.sku.collaboration.project.domain.userBadge.exception;
+package com.sku.collaboration.project.domain.quiz.exception;
 
 import com.sku.collaboration.project.global.exception.model.BaseErrorCode;
 import lombok.AllArgsConstructor;
@@ -7,8 +7,9 @@ import org.springframework.http.HttpStatus;
 
 @Getter
 @AllArgsConstructor
-public enum UserBadgeErrorCode implements BaseErrorCode {
-  BADGE_NOT_OWNED("BADGE_4001", "해당 회원이 해당 배찌를 소유하고 있지 않습니다.", HttpStatus.BAD_REQUEST);
+public enum QuizErrorCode implements BaseErrorCode {
+
+  QUIZ_NOT_FOUND("QUIZ_401", "퀴즈를 찾을 수 없습니다.", HttpStatus.NOT_FOUND);
 
   private final String code;
   private final String message;
