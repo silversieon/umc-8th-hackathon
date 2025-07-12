@@ -37,8 +37,9 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
+            mkdir -p ${{ secrets.TARGET_DIR }}/build/libs/logs
             pkill -f 'java -jar' || echo "No running server"
-            nohup \
+            setsid nohup \
               EC2_MYSQL=${{ secrets.EC2_MYSQL }} \
               EC2_PASSWORD=${{ secrets.EC2_PASSWORD }} \
               DB_PASSWORD=${{ secrets.DB_PASSWORD }} \
