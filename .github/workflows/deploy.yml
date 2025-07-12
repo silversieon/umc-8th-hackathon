@@ -39,9 +39,8 @@ jobs:
           script: |
             mkdir -p ${{ secrets.TARGET_DIR }}/build/libs/logs
             pkill -f 'java -jar' || echo "No running server"
-            setsid nohup \
-              EC2_MYSQL=${{ secrets.EC2_MYSQL }} \
-              EC2_PASSWORD=${{ secrets.EC2_PASSWORD }} \
-              DB_PASSWORD=${{ secrets.DB_PASSWORD }} \
-              OPEN_API_KEY=${{ secrets.OPEN_API_KEY }} \
-              java -jar /home/ubuntu/build/libs/*.jar > /home/ubuntu/build/libs/logs/app.log 2>&1 &
+            EC2_MYSQL=${{ secrets.EC2_MYSQL }} \
+            EC2_PASSWORD=${{ secrets.EC2_PASSWORD }} \
+            DB_PASSWORD=${{ secrets.DB_PASSWORD }} \
+            OPEN_API_KEY=${{ secrets.OPEN_API_KEY }} \
+            nohup java -jar /home/ubuntu/build/libs/*.jar > /home/ubuntu/build/libs/logs/app.log 2>&1 &
