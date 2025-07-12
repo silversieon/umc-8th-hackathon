@@ -39,10 +39,4 @@ jobs:
           script: |
             mkdir -p ${{ secrets.TARGET_DIR }}/build/libs/logs
             pkill -f 'java -jar' || echo "No running server"
-            bash -c '
-              export EC2_MYSQL="${{ secrets.EC2_MYSQL }}"
-              export EC2_PASSWORD="${{ secrets.EC2_PASSWORD }}"
-              export DB_PASSWORD="${{ secrets.DB_PASSWORD }}"
-              export OPEN_API_KEY="${{ secrets.OPEN_API_KEY }}"
-              nohup java -jar ${{ secrets.TARGET_DIR }}/build/libs/*.jar > ${{ secrets.TARGET_DIR }}/build/libs/logs/app.log 2>&1 &
-            '
+            DB_PASSWORD=${{secrets.DB_PASSWORD}} OPEN_API_KEY=${{secrets.OPEN_API_KEY}} nohup java -jar /home/ubuntu/build/libs/collaboration.project-0.0.1-SNAPSHOT.jar > /home/ubuntu/build/libs/logs/app.log 2>&1 &
