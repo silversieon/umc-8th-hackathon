@@ -28,7 +28,7 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
           source: "build/libs/*.jar"
-          target: "${{ secrets.TARGET_DIR }}/build"
+          target: "${{ secrets.TARGET_DIR }}"
 
       - name: SSH and run on EC2
         uses: appleboy/ssh-action@v1.0.0
@@ -43,4 +43,4 @@ jobs:
               EC2_PASSWORD=${{ secrets.EC2_PASSWORD }} \
               DB_PASSWORD=${{ secrets.DB_PASSWORD }} \
               OPEN_API_KEY=${{ secrets.OPEN_API_KEY }} \
-              java -jar ${{ secrets.TARGET_DIR }}/build/*.jar > ${{ secrets.TARGET_DIR }}/logs/app.log 2>&1 &
+              java -jar ${{ secrets.TARGET_DIR }}/build/libs/*.jar > ${{ secrets.TARGET_DIR }}/logs/app.log 2>&1 &
