@@ -34,7 +34,7 @@ public class SwaggerConfig {
                         .type(SecurityScheme.Type.HTTP)
                         .scheme("bearer")
                         .bearerFormat("JMT")))
-        .info(new Info().title("Swagger API 명세서").version("1.0").description("My Swagger"));
+        .info(new Info().title("Swagger API 명세").version("1.0").description("My Swagger"));
 
   }
 
