@@ -28,7 +28,7 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
           source: "build/libs/*.jar"
-          target: "${{ secrets.TARGET_DIR }}/build/libs"
+          target: "/home/ubuntu/build/libs"
 
       - name: SSH and run on EC2
         uses: appleboy/ssh-action@v1.0.0
@@ -37,12 +37,11 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            mkdir -p ${{ secrets.TARGET_DIR }}/build/libs/logs
+            mkdir -p /home/ubuntu/build/libs/logs
             pkill -f 'java -jar' || echo "No running server"
 
-            TARGET_DIR=${{ secrets.TARGET_DIR }}
             bash -c "
               export DB_PASSWORD='${{ secrets.DB_PASSWORD }}'
               export OPEN_API_KEY='${{ secrets.OPEN_API_KEY }}'
-              setsid nohup java -jar \$TARGET_DIR/build/libs/collaboration.project-0.0.1-SNAPSHOT.jar > \$TARGET_DIR/build/libs/logs/app.log 2>&1 &
+              setsid nohup java -jar /home/ubuntu/build/libs/collaboration.project-0.0.1-SNAPSHOT.jar > /home/ubuntu/build/libs/logs/app.log 2>&1 &
             "
