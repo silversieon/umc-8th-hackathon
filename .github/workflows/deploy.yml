@@ -43,4 +43,4 @@ jobs:
               EC2_PASSWORD=${{ secrets.EC2_PASSWORD }} \
               DB_PASSWORD=${{ secrets.DB_PASSWORD }} \
               OPEN_API_KEY=${{ secrets.OPEN_API_KEY }} \
-              java -jar ${{ secrets.TARGET_DIR }}/build/libs/*.jar > ${{ secrets.TARGET_DIR }}/logs/app.log 2>&1 &
+              java -jar ${{ secrets.TARGET_DIR }}/build/libs/*.jar > ${{ secrets.TARGET_DIR }}/build/libs/logs/app.log 2>&1 &
