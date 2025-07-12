@@ -41,4 +41,6 @@ jobs:
             nohup \
               EC2_MYSQL=${{ secrets.EC2_MYSQL }} \
               EC2_PASSWORD=${{ secrets.EC2_PASSWORD }} \
+              DB_PASSWORD=${{ secrets.DB_PASSWORD }} \
+              OPEN_API_KEY=${{ secrets.OPEN_API_KEY }} \
               java -jar ${{ secrets.TARGET_DIR }}/build/*.jar > ${{ secrets.TARGET_DIR }}/logs/app.log 2>&1 &
