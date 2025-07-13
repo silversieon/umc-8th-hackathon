@@ -21,7 +21,7 @@ import org.springframework.web.client.RestTemplate;
 @RequiredArgsConstructor
 public class GPTQuizUtil {
 
-  @Value("${OPEN_API_KEY}")
+  @Value("${openai.api-key}")
   private String apiKey;
 
   private final ObjectMapper objectMapper;
