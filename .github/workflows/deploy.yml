@@ -43,10 +43,9 @@ jobs:
             PID=$(pgrep -f 'collaboration.project-0.0.1-SNAPSHOT.jar')
             if [ -n "$PID" ]; then
               echo "Killing existing process $PID"
-              sudo kill "$PID"
+              sudo kill $PID
               sleep 3
             else
               echo "No running server"
             fi
-            sleep 5
             nohup java -jar /home/ubuntu/build/libs/collaboration.project-0.0.1-SNAPSHOT.jar --spring.config.location=/home/ubuntu/build/libs/config/application.properties > /home/ubuntu/build/libs/logs/app.log 2>&1 &
