@@ -40,6 +40,5 @@ jobs:
             mkdir -p /home/ubuntu/build/libs/logs
             mkdir -p /home/ubuntu/build/libs/config
             echo "${{secrets.PROPERTIES}}" > /home/ubuntu/build/libs/config/application.properties
-            pkill -f 'java -jar' || echo "No running server"
-            sudo systemctl daemon-reload
-            sudo systemctl restart spring
+            sudo pkill -f 'java -jar' || echo "No running server"
+            sudo nohup java -jar /home/ubuntu/build/libs/collaboration.project-0.0.1-SNAPSHOT.jar --spring.config.location=/home/ubuntu/build/libs/config/application.properties > /home/ubuntu/build/libs/logs/app.log 2>&1 &
