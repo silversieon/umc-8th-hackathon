@@ -42,7 +42,6 @@ jobs:
             echo "${{secrets.PROPERTIES}}" > /home/ubuntu/build/libs/config/application.properties
             PID=$(pgrep -f 'collaboration.project-0.0.1-SNAPSHOT.jar')
             if [ -n "$PID" ]; then
-              echo "Killing existing process $PID"
               sudo kill $PID
               sleep 3
             else
