@@ -37,6 +37,8 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
+            sudo systemctl daemon-reload
+            sudo systemctl restart spring
             mkdir -p /home/ubuntu/build/libs/logs
             mkdir -p /home/ubuntu/build/libs/config
             echo "${{secrets.PROPERTIES}}" > /home/ubuntu/build/libs/config/application.properties
