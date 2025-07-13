@@ -38,10 +38,7 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             mkdir -p /home/ubuntu/build/libs/logs
+            mkdir -p /home/ubuntu/build/libs/config
+            echo "${{secrets.PROPERTIES}}" > /home/ubuntu/build/libs/config/application.properties
             pkill -f 'java -jar' || echo "No running server"
-
-            bash -c "
-              export DB_PASSWORD='${{ secrets.DB_PASSWORD }}'
-              export OPEN_API_KEY='${{ secrets.OPEN_API_KEY }}'
-              setsid nohup java -jar /home/ubuntu/build/libs/collaboration.project-0.0.1-SNAPSHOT.jar > /home/ubuntu/build/libs/logs/app.log 2>&1 &
-            "
+            nohup java -jar /home/ubuntu/build/libs/collaboration.project-0.0.1-SNAPSHOT.jar --spring.config.location: /home/ubuntu/build/libs/config/application.properties > /home/ubuntu/build/libs/logs/app.log 2>&1 &
